@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="agfBg" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#1A1A1A"/>
+      <stop offset="60%" stop-color="#0E0E0E"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </radialGradient>
+
+    <!-- Vibrant Orange Gradient -->
+    <linearGradient id="agfOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF7A2E"/>
+      <stop offset="50%" stop-color="#F5600A"/>
+      <stop offset="100%" stop-color="#D64800"/>
+    </linearGradient>
+
+    <!-- Golden Highlight Gradient -->
+    <linearGradient id="agfGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFD000"/>
+      <stop offset="100%" stop-color="#F5600A"/>
+    </linearGradient>
+
+    <!-- Metallic Monogram Gradient -->
+    <linearGradient id="agfSilver" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="65%" stop-color="#E2E2E2"/>
+      <stop offset="100%" stop-color="#A0A0A0"/>
+    </linearGradient>
+
+    <!-- Subtle Orange Glow Filter -->
+    <filter id="orangeGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="strongGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="14" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Outer Hexagonal Shield Path -->
+  <!-- Outer Glow Shadow -->
+  <polygon points="256,16 480,96 480,336 256,496 32,336 32,96" 
+           fill="none" 
+           stroke="#F5600A" 
+           stroke-width="12" 
+           opacity="0.3" 
+           filter="url(#strongGlow)" />
+
+  <!-- Shield Base Background -->
+  <polygon points="256,20 476,98 476,334 256,492 36,334 36,98" 
+           fill="url(#agfBg)" 
+           stroke="url(#agfOrange)" 
+           stroke-width="5" />
+
+  <!-- Inner Concentric Border -->
+  <polygon points="256,36 458,108 458,322 256,472 54,322 54,108" 
+           fill="none" 
+           stroke="#2A2A2A" 
+           stroke-width="2" />
+
+  <polygon points="256,44 450,112 450,318 256,464 62,318 62,112" 
+           fill="none" 
+           stroke="url(#agfOrange)" 
+           stroke-width="1.5" 
+           stroke-dasharray="16, 6" 
+           opacity="0.8" />
+
+  <!-- Subtle Top Decorative Barbell Icon -->
+  <g transform="translate(256, 102)" filter="url(#orangeGlow)">
+    <!-- Central Bar -->
+    <rect x="-70" y="-3" width="140" height="6" rx="3" fill="url(#agfGold)" />
+    <!-- Center Grip Ring -->
+    <rect x="-8" y="-6" width="16" height="12" rx="2" fill="#FFFFFF" />
+    <!-- Left Weight Plates -->
+    <rect x="-65" y="-18" width="8" height="36" rx="3" fill="url(#agfOrange)" />
+    <rect x="-53" y="-14" width="7" height="28" rx="2" fill="#E2E2E2" />
+    <rect x="-42" y="-9" width="6" height="18" rx="2" fill="url(#agfOrange)" />
+    <!-- Right Weight Plates -->
+    <rect x="57" y="-18" width="8" height="36" rx="3" fill="url(#agfOrange)" />
+    <rect x="46" y="-14" width="7" height="28" rx="2" fill="#E2E2E2" />
+    <rect x="36" y="-9" width="6" height="18" rx="2" fill="url(#agfOrange)" />
+  </g>
+
+  <!-- Arc text: ANYTIME GOLDEN FITNESS -->
+  <path id="textArcTop" d="M 90,175 Q 256,120 422,175" fill="none" />
+  <text font-family="'Oswald', 'Impact', sans-serif" font-weight="700" font-size="20" fill="#FFB300" letter-spacing="4.5">
+    <textPath href="#textArcTop" startOffset="50%" text-anchor="middle">
+      ANYTIME GOLDEN FITNESS
+    </textPath>
+  </text>
+
+  <!-- Central Monogram: AGF -->
+  <g transform="translate(256, 275)" text-anchor="middle">
+    <!-- Subtle drop shadow behind AGF -->
+    <text font-family="'Oswald', 'Arial Black', sans-serif" 
+          font-weight="900" 
+          font-size="128" 
+          letter-spacing="4" 
+          fill="#F5600A" 
+          opacity="0.6"
+          transform="translate(0, 6)"
+          filter="url(#orangeGlow)">
+      AGF
+    </text>
+
+    <!-- Main Solid Monogram -->
+    <text font-family="'Oswald', 'Arial Black', sans-serif" 
+          font-weight="900" 
+          font-size="128" 
+          letter-spacing="4" 
+          fill="url(#agfSilver)" 
+          stroke="#000000" 
+          stroke-width="3">
+      AGF
+    </text>
+  </g>
+
+  <!-- Accent Divider Line with Center Diamond -->
+  <g transform="translate(256, 328)">
+    <line x1="-140" y1="0" x2="-25" y2="0" stroke="url(#agfOrange)" stroke-width="2" />
+    <!-- Diamond -->
+    <polygon points="0,-7 7,0 0,7 -7,0" fill="url(#agfGold)" />
+    <line x1="25" y1="0" x2="140" y2="0" stroke="url(#agfOrange)" stroke-width="2" />
+  </g>
+
+  <!-- Subtitle Tag: RAJAM - EST. 2024 -->
+  <g transform="translate(256, 365)" text-anchor="middle">
+    <!-- Badge Pill Background -->
+    <rect x="-105" y="-18" width="210" height="34" rx="17" 
+          fill="rgba(245, 96, 10, 0.12)" 
+          stroke="url(#agfOrange)" 
+          stroke-width="1.5" />
+    <text y="5" 
+          font-family="'Inter', sans-serif" 
+          font-weight="800" 
+          font-size="14" 
+          letter-spacing="3" 
+          fill="#FFFFFF">
+      RAJAM • AP
+    </text>
+  </g>
+
+  <!-- Bottom Crest Star Accents -->
+  <g transform="translate(256, 425)" fill="url(#agfGold)">
+    <!-- Center Star -->
+    <polygon points="0,-10 3,-3 10,-3 5,2 7,9 0,5 -7,9 -5,2 -10,-3 -3,-3" />
+    <!-- Left Star -->
+    <polygon points="-30,-8 -27,-2 -21,-2 -25,2 -23,7 -30,4 -37,7 -35,2 -39,-2 -33,-2" transform="scale(0.8) translate(-10, 0)" opacity="0.8" />
+    <!-- Right Star -->
+    <polygon points="30,-8 33,-2 39,-2 35,2 37,7 30,4 23,7 25,2 21,-2 27,-2" transform="scale(0.8) translate(10, 0)" opacity="0.8" />
+  </g>
+</svg>

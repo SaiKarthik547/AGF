@@ -1,0 +1,328 @@
+.section {
+  padding: var(--space-20) var(--container-gutter);
+  background-color: var(--color-black);
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--space-12);
+  align-items: flex-start;
+}
+
+.subtext {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  color: var(--color-gray-light);
+  line-height: var(--lh-relaxed);
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+
+.expectList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+.expectItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.iconCircle {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background-color: rgba(245, 96, 10, 0.1);
+  border: 1px solid var(--color-orange-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon {
+  color: var(--color-orange);
+}
+
+.expectTitle {
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-bold);
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  margin-bottom: var(--space-1);
+}
+
+.expectDesc {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  color: var(--color-gray-light);
+  line-height: var(--lh-normal);
+}
+
+.checklistCard {
+  background-color: var(--color-near-black);
+  border: 1px solid var(--color-charcoal-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  border-left: 3px solid var(--color-orange);
+}
+
+.checklistTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  color: var(--color-white);
+  text-transform: uppercase;
+  margin-bottom: var(--space-3);
+}
+
+.checkIcon {
+  color: var(--color-orange);
+}
+
+.checklist {
+  list-style: disc;
+  padding-left: var(--space-5);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  color: var(--color-gray-light);
+}
+
+/* Booking Card */
+.bookingCard {
+  background-color: var(--color-near-black);
+  border: 1px solid var(--color-charcoal-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-charcoal-light);
+}
+
+.headerIcon {
+  color: var(--color-orange);
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-white);
+  text-transform: uppercase;
+}
+
+.cardSub {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  color: var(--color-gray);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  color: var(--color-white-dim);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+}
+
+.required {
+  color: var(--color-orange);
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-charcoal);
+  border: 1px solid var(--color-charcoal-light);
+  border-radius: var(--radius-sm);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: var(--color-orange);
+}
+
+.select option {
+  background-color: var(--color-near-black);
+  color: var(--color-white);
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--space-4) var(--space-6);
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  margin-top: var(--space-2);
+}
+
+.submitBtn:hover {
+  background-color: var(--color-orange-hover);
+  transform: translateY(-2px);
+}
+
+/* Success State */
+.successState {
+  text-align: center;
+  padding: var(--space-6) var(--space-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.successBadge {
+  margin-bottom: var(--space-4);
+}
+
+.successIcon {
+  color: var(--color-orange);
+}
+
+.successTitle {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-white);
+  letter-spacing: var(--ls-wide);
+  margin-bottom: var(--space-2);
+}
+
+.successDesc {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  color: var(--color-gray-light);
+  line-height: var(--lh-relaxed);
+  max-width: 480px;
+  margin-bottom: var(--space-6);
+}
+
+.summaryBox {
+  width: 100%;
+  background-color: var(--color-charcoal);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  color: var(--color-gray-light);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: var(--space-2);
+}
+
+.summaryRow strong {
+  color: var(--color-white);
+}
+
+.successNote {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  color: var(--color-gray);
+  margin-bottom: var(--space-6);
+}
+
+.resetBtn {
+  background: none;
+  border: 1px solid var(--color-orange-border);
+  color: var(--color-orange);
+  padding: var(--space-2) var(--space-6);
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.resetBtn:hover {
+  background-color: rgba(245, 96, 10, 0.1);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: var(--space-10) var(--space-4);
+  }
+
+  .bookingCard {
+    padding: var(--space-5) var(--space-4);
+  }
+}

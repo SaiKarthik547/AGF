@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="favOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF7A2E"/>
+      <stop offset="100%" stop-color="#E04E00"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark Shield Base -->
+  <polygon points="32,2 60,12 60,42 32,62 4,42 4,12" 
+           fill="#0A0A0A" 
+           stroke="url(#favOrange)" 
+           stroke-width="3" />
+
+  <!-- Inner accent ring -->
+  <polygon points="32,6 55,15 55,40 32,57 9,40 9,15" 
+           fill="#141414" 
+           stroke="#F5600A" 
+           stroke-width="1"
+           opacity="0.4" />
+
+  <!-- Bold AGF Monogram -->
+  <text x="32" y="38" 
+        font-family="'Oswald', sans-serif" 
+        font-weight="900" 
+        font-size="20" 
+        letter-spacing="0.5" 
+        text-anchor="middle" 
+        fill="#FFFFFF">
+    AGF
+  </text>
+
+  <!-- Golden Underline -->
+  <rect x="20" y="43" width="24" height="2.5" rx="1.2" fill="#F5600A" />
+</svg>

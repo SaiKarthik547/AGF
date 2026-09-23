@@ -1,0 +1,334 @@
+/* =====================================================
+   Navbar.module.css
+   ===================================================== */
+
+/* -- Base navbar ------------------------------------ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-navbar);
+  height: var(--navbar-height);
+  background-color: transparent;
+  transition:
+    background-color var(--dur-slow) var(--ease-in-out),
+    backdrop-filter  var(--dur-slow) var(--ease-in-out),
+    border-color     var(--dur-slow) var(--ease-in-out);
+  border-bottom: 1px solid transparent;
+}
+
+/* -- Scrolled state --------------------------------- */
+.navbarScrolled {
+  background-color: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom-color: var(--color-charcoal-light);
+}
+
+/* -- Inner layout ----------------------------------- */
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: var(--container-2xl);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+  gap: var(--space-8);
+}
+
+/* -- Logo ------------------------------------------- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  line-height: 1;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.logoBadgeWrap {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 8px rgba(245, 96, 10, 0.4));
+  transition: transform var(--dur-normal) var(--ease-out);
+}
+
+.logoBadgeImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logo:hover .logoBadgeWrap {
+  transform: scale(1.08);
+}
+
+.logoTextWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.logoMark {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tight);
+  color: var(--color-white);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.logoFull {
+  font-family: var(--font-display);
+  font-size: 0.45rem;
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  color: var(--color-orange);
+  text-transform: uppercase;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+/* -- Desktop nav ------------------------------------ */
+.desktopNav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.navLink {
+  position: relative;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wide);
+  color: var(--color-gray-muted);
+  text-transform: uppercase;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  transition: color var(--dur-normal) var(--ease-out);
+  text-decoration: none;
+}
+
+.navLink:hover {
+  color: var(--color-white);
+}
+
+.navLinkActive {
+  color: var(--color-orange);
+}
+
+.navLinkActive:hover {
+  color: var(--color-orange-hover);
+}
+
+.activeIndicator {
+  position: absolute;
+  bottom: -2px;
+  left: var(--space-3);
+  right: var(--space-3);
+  height: 2px;
+  background-color: var(--color-orange);
+  border-radius: var(--radius-full);
+}
+
+/* -- Actions (right side) --------------------------- */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-shrink: 0;
+}
+
+/* -- Social icons ----------------------------------- */
+.socialLinks {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gray-light);
+  transition: color var(--dur-normal) var(--ease-out);
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.socialIcon:hover {
+  color: var(--color-orange);
+}
+
+/* -- CTA Button ------------------------------------- */
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-5);
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-normal) var(--ease-out),
+    box-shadow       var(--dur-normal) var(--ease-out),
+    transform        var(--dur-fast)   var(--ease-out);
+  min-height: 44px;
+}
+
+.ctaButton:hover {
+  background-color: var(--color-orange-hover);
+  box-shadow: var(--shadow-orange);
+  transform: translateY(-1px);
+}
+
+.ctaButton:active {
+  background-color: var(--color-orange-active);
+  transform: translateY(0);
+}
+
+/* -- Hamburger -------------------------------------- */
+.hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--color-white);
+  border-radius: var(--radius-sm);
+  transition: color var(--dur-normal) var(--ease-out);
+}
+
+.hamburger:hover {
+  color: var(--color-orange);
+}
+
+/* -- Mobile backdrop -------------------------------- */
+.mobileBackdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: calc(var(--z-navbar) - 1);
+  backdrop-filter: blur(4px);
+}
+
+/* -- Mobile nav drawer ------------------------------ */
+.mobileNav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(85vw, 360px);
+  background-color: var(--color-near-black);
+  z-index: var(--z-navbar);
+  padding: var(--navbar-height) var(--space-8) var(--space-8);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-left: 1px solid var(--color-charcoal-light);
+  overflow-y: auto;
+}
+
+.mobileNavList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-top: var(--space-8);
+}
+
+.mobileNavLink {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tight);
+  text-transform: uppercase;
+  color: var(--color-gray-light);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-charcoal-light);
+  text-decoration: none;
+  transition: color var(--dur-normal) var(--ease-out);
+  min-height: 44px;
+}
+
+.mobileNavLink:hover {
+  color: var(--color-white);
+}
+
+.mobileNavLinkActive {
+  color: var(--color-orange);
+}
+
+.mobileNavLinkActive:hover {
+  color: var(--color-orange-hover);
+}
+
+.mobileCTA {
+  margin-top: var(--space-8);
+}
+
+.mobileCTAButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-4) var(--space-6);
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: background-color var(--dur-normal) var(--ease-out);
+  min-height: 56px;
+}
+
+.mobileCTAButton:hover {
+  background-color: var(--color-orange-hover);
+}
+
+/* -- Responsive ------------------------------------- */
+@media (max-width: 1024px) {
+  .socialLinks {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktopNav {
+    display: none;
+  }
+  .ctaButton {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+  .inner {
+    padding-inline: var(--space-4);
+  }
+}

@@ -1,0 +1,389 @@
+/* ============================================================
+   AGF — ANYTIME GOLDEN FITNESS
+   Global Design Token System
+   All design decisions live here. Nothing hardcoded elsewhere.
+   ============================================================ */
+
+/* -- Google Fonts Import (Oswald & Inter) -- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap');
+
+/* ------------------------------------------------------------
+   1. DESIGN TOKENS
+   ------------------------------------------------------------ */
+:root {
+  /* === COLOUR: PRIMARY PALETTE === */
+  --color-black:           #0A0A0A;   /* True bg black */
+  --color-near-black:      #111111;   /* Card backgrounds */
+  --color-charcoal:        #1A1A1A;   /* Section alternates */
+  --color-charcoal-mid:    #1E1E1E;   /* Hover card bg */
+  --color-charcoal-light:  #252525;   /* Borders, dividers */
+  --color-gray-dark:       #333333;   /* Muted elements */
+  --color-gray:            #555555;   /* Placeholder text */
+  --color-gray-light:      #888888;   /* Secondary text */
+  --color-gray-muted:      #AAAAAA;   /* Tertiary labels */
+  --color-white:           #FFFFFF;
+  --color-white-muted:     #E8E8E8;   /* Body text on dark */
+  --color-white-dim:       #BBBBBB;   /* Subdued body */
+
+  /* === COLOUR: ORANGE ACCENT === */
+  --color-orange:          #F5600A;   /* Primary accent — extracted from reference images */
+  --color-orange-hover:    #FF7A2E;   /* Hover state */
+  --color-orange-active:   #E04E00;   /* Pressed state */
+  --color-orange-dim:      rgba(245, 96, 10, 0.12); /* Subtle orange bg tint */
+  --color-orange-border:   rgba(245, 96, 10, 0.30); /* Orange border */
+  --color-orange-glow:     rgba(245, 96, 10, 0.20); /* Shadow glow */
+
+  /* === COLOUR: SEMANTIC === */
+  --color-error:           #E84040;
+  --color-error-dim:       rgba(232, 64, 64, 0.12);
+  --color-success:         #2ECC71;
+  --color-success-dim:     rgba(46, 204, 113, 0.12);
+
+  /* === FONT FAMILIES === */
+  --font-oswald:  'Oswald', sans-serif;
+  --font-inter:   'Inter', sans-serif;
+  --font-display: 'Oswald', sans-serif;
+  --font-body:    'Inter', sans-serif;
+
+  /* === FONT SIZES — fluid clamp (min → max) === */
+  --fs-label:   clamp(0.6875rem,  1.4vw,  0.75rem);   /* 11–12px  uppercase labels   */
+  --fs-xs:      clamp(0.75rem,    1.6vw,  0.8125rem);  /* 12–13px  tiny copy          */
+  --fs-sm:      clamp(0.8125rem,  1.8vw,  0.875rem);   /* 13–14px  captions           */
+  --fs-base:    clamp(0.9375rem,  2vw,    1rem);        /* 15–16px  body               */
+  --fs-md:      clamp(1rem,       2.2vw,  1.125rem);   /* 16–18px  lead paragraph     */
+  --fs-lg:      clamp(1.125rem,   2.5vw,  1.25rem);    /* 18–20px  card heading       */
+  --fs-xl:      clamp(1.25rem,    3vw,    1.5rem);      /* 20–24px  section sub        */
+  --fs-2xl:     clamp(1.5rem,     4vw,    2rem);        /* 24–32px  section heading    */
+  --fs-3xl:     clamp(2rem,       5vw,    3rem);        /* 32–48px  display heading    */
+  --fs-4xl:     clamp(2.5rem,     7vw,    4.5rem);      /* 40–72px  large display      */
+  --fs-hero:    clamp(3rem,       10vw,   7rem);        /* 48–112px hero headline      */
+
+  /* === FONT WEIGHTS === */
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* === LINE HEIGHTS === */
+  --lh-tight:   1.05;   /* Hero headings */
+  --lh-snug:    1.2;    /* Section headings */
+  --lh-normal:  1.5;    /* Body */
+  --lh-relaxed: 1.7;    /* Long-form copy */
+
+  /* === LETTER SPACING === */
+  --ls-tight:   -0.025em;
+  --ls-normal:  0em;
+  --ls-wide:    0.04em;
+  --ls-wider:   0.1em;    /* Section labels */
+  --ls-widest:  0.18em;   /* Extreme label spacing */
+
+  /* === SPACING SCALE === */
+  --space-1:    0.25rem;   /*   4px */
+  --space-2:    0.5rem;    /*   8px */
+  --space-3:    0.75rem;   /*  12px */
+  --space-4:    1rem;      /*  16px */
+  --space-5:    1.25rem;   /*  20px */
+  --space-6:    1.5rem;    /*  24px */
+  --space-8:    2rem;      /*  32px */
+  --space-10:   2.5rem;    /*  40px */
+  --space-12:   3rem;      /*  48px */
+  --space-16:   4rem;      /*  64px */
+  --space-20:   5rem;      /*  80px */
+  --space-24:   6rem;      /*  96px */
+  --space-32:   8rem;      /* 128px */
+  --space-40:  10rem;      /* 160px */
+
+  /* === LAYOUT === */
+  --container-sm:   640px;
+  --container-md:   768px;
+  --container-lg:   1024px;
+  --container-xl:   1280px;
+  --container-2xl:  1440px;
+  --container-pad:  clamp(1rem, 5vw, 5rem);
+  --container-pad-sm: clamp(1rem, 3vw, 1.5rem);
+
+  /* === BORDER RADIUS === */
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  24px;
+  --radius-full: 9999px;
+
+  /* === BORDERS === */
+  --border-width: 1px;
+  --border-color: var(--color-charcoal-light);
+  --border-orange: var(--color-orange-border);
+
+  /* === SHADOWS === */
+  --shadow-sm:     0 1px 4px rgba(0, 0, 0, 0.5);
+  --shadow-md:     0 4px 16px rgba(0, 0, 0, 0.6);
+  --shadow-lg:     0 8px 32px rgba(0, 0, 0, 0.7);
+  --shadow-xl:     0 16px 48px rgba(0, 0, 0, 0.8);
+  --shadow-orange: 0 4px 24px rgba(245, 96, 10, 0.28);
+  --shadow-inset:  inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  /* === ANIMATION === */
+  --dur-instant: 100ms;
+  --dur-fast:    150ms;
+  --dur-normal:  250ms;
+  --dur-slow:    400ms;
+  --dur-slower:  600ms;
+  --dur-slowest: 900ms;
+
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in:     cubic-bezier(0.4, 0, 1, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* === Z-INDEX LAYERS === */
+  --z-base:      0;
+  --z-above:     10;
+  --z-dropdown:  100;
+  --z-sticky:    200;
+  --z-overlay:   300;
+  --z-modal:     400;
+  --z-toast:     500;
+  --z-navbar:    600;
+
+  /* === NAVBAR & MEASUREMENTS === */
+  --navbar-height: 72px;
+  --nav-height:    72px;
+
+  /* === CONTAINER MEASUREMENTS === */
+  --container-gutter: clamp(1rem, 4vw, 2.5rem);
+  --container-max:    1280px;
+
+  /* === EQUIPMENT VIEWER === */
+  --viewer-aspect: 4 / 3;           /* Fixed aspect ratio for equipment image area */
+  --viewer-bg: var(--color-charcoal); /* Dark bg for object-fit: contain letterboxing */
+}
+
+@media (max-width: 768px) {
+  :root {
+    --navbar-height: 64px;
+    --nav-height:    64px;
+    --container-gutter: 1rem;
+  }
+}
+
+/* ------------------------------------------------------------
+   2. RESET & BASE
+   ------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-normal);
+  color: var(--color-white-muted);
+  background-color: var(--color-black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--color-white);
+}
+
+/* ------------------------------------------------------------
+   3. FOCUS STYLES — Accessible, AGF-branded
+   ------------------------------------------------------------ */
+:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ------------------------------------------------------------
+   4. SCROLLBAR (webkit)
+   ------------------------------------------------------------ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-near-black);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-dark);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-orange);
+}
+
+/* ------------------------------------------------------------
+   5. LAYOUT UTILITIES
+   ------------------------------------------------------------ */
+.container {
+  width: 100%;
+  max-width: var(--container-2xl);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.container--sm {
+  max-width: var(--container-lg);
+}
+
+.section {
+  padding-block: var(--space-20);
+}
+
+.section--lg {
+  padding-block: var(--space-32);
+}
+
+/* ------------------------------------------------------------
+   6. TYPOGRAPHY UTILITIES
+   ------------------------------------------------------------ */
+
+/* Section label — "OUR EQUIPMENT", "ABOUT AGF" */
+.label {
+  font-family: var(--font-body);
+  font-size: var(--fs-label);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--color-orange);
+}
+
+/* Display headings use Oswald */
+.heading-display {
+  font-family: var(--font-display);
+  font-size: var(--fs-4xl);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--color-white);
+  text-transform: uppercase;
+}
+
+.heading-section {
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-tight);
+  color: var(--color-white);
+  text-transform: uppercase;
+}
+
+.heading-card {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-snug);
+  color: var(--color-white);
+  text-transform: uppercase;
+}
+
+.text-orange {
+  color: var(--color-orange);
+}
+
+.text-muted {
+  color: var(--color-gray-light);
+}
+
+.text-body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-relaxed);
+  color: var(--color-white-dim);
+}
+
+/* ------------------------------------------------------------
+   7. INTERACTIVE UTILITIES
+   ------------------------------------------------------------ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Touch target helper */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ------------------------------------------------------------
+   8. REDUCED MOTION
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   9. HORIZONTAL SCROLL HELPER (filter bars, thumbnail bars)
+   ------------------------------------------------------------ */
+.scroll-x {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scroll-x::-webkit-scrollbar {
+  display: none;
+}

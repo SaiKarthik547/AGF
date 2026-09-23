@@ -1,0 +1,15 @@
+{
+  "name": "agf-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix agf run dev",
+    "dev:webpack": "npm --prefix agf run dev:webpack",
+    "build": "npm --prefix agf run build",
+    "start": "npm --prefix agf run start",
+    "lint": "npm --prefix agf run lint"
+  },
+  "workspaces": [
+    "agf"
+  ]
+}

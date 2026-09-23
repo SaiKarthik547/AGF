@@ -1,0 +1,9 @@
+.label {
+  font-family: var(--font-body);
+  font-size: var(--fs-label);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--color-orange);
+  margin-bottom: var(--space-3);
+}

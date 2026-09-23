@@ -1,0 +1,124 @@
+/* =====================================================
+   Buttons.module.css
+   ===================================================== */
+
+/* -- Base -------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  padding: 0.75rem var(--space-6);
+  min-height: 48px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition:
+    background-color var(--dur-normal) var(--ease-out),
+    border-color     var(--dur-normal) var(--ease-out),
+    color            var(--dur-normal) var(--ease-out),
+    box-shadow       var(--dur-normal) var(--ease-out),
+    transform        var(--dur-fast)   var(--ease-out);
+  white-space: nowrap;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* -- Primary ----------------------------------------- */
+.primary {
+  background-color: var(--color-orange);
+  border-color: var(--color-orange);
+  color: var(--color-white);
+}
+
+.primary:hover {
+  background-color: var(--color-orange-hover);
+  border-color: var(--color-orange-hover);
+  box-shadow: var(--shadow-orange);
+}
+
+.primary:active {
+  background-color: var(--color-orange-active);
+  border-color: var(--color-orange-active);
+}
+
+/* -- Secondary --------------------------------------- */
+.secondary {
+  background-color: transparent;
+  border-color: var(--color-charcoal-light);
+  color: var(--color-white);
+}
+
+.secondary:hover {
+  border-color: var(--color-orange);
+  color: var(--color-orange);
+}
+
+/* -- Sizes ------------------------------------------- */
+.btnLg {
+  font-size: var(--fs-base);
+  padding: var(--space-4) var(--space-8);
+  min-height: 56px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* -- Icon -------------------------------------------- */
+.icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* -- Text Button ------------------------------------- */
+.textBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--color-orange);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: color var(--dur-normal) var(--ease-out), gap var(--dur-normal) var(--ease-out);
+  min-height: 44px;
+}
+
+.textBtn:hover {
+  color: var(--color-orange-hover);
+  gap: var(--space-3);
+}
+
+.arrow {
+  transition: transform var(--dur-normal) var(--ease-out);
+}
+
+.textBtn:hover .arrow {
+  transform: translateX(4px);
+}
