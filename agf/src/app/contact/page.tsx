@@ -5,6 +5,8 @@ import PageHero from '@/components/shared/PageHero';
 import SectionLabel from '@/components/shared/SectionLabel';
 import SectionHeading from '@/components/shared/SectionHeading';
 import CTASection from '@/components/shared/CTASection';
+import MapSection from '@/components/shared/MapSection';
+import FAQSection from '@/components/shared/FAQSection';
 import { SITE_LOCATION, CONTACT_PLACEHOLDERS } from '@/lib/constants';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, MessageSquare } from 'lucide-react';
 import styles from './contact.module.css';
@@ -45,7 +47,7 @@ export default function ContactPage() {
                 FACILITY DETAILS
               </SectionHeading>
               <p className={styles.subtext}>
-                We are centrally located in Rajam to provide easy access for daily fitness routines.
+                We are conveniently located beside Apsara Theatre on Palakonda Road in Rajam for easy daily access.
               </p>
 
               <div className={styles.cardsList}>
@@ -56,7 +58,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className={styles.cardTitle}>Location</h3>
                     <p className={styles.cardValue}>{SITE_LOCATION}</p>
-                    <span className={styles.cardNote}>Centrally accessible in Rajam</span>
+                    <span className={styles.cardNote}>Beside Apsara Theatre, Palakonda Road</span>
                   </div>
                 </div>
 
@@ -209,6 +211,12 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* Interactive Google Map with precise Rajam coordinates */}
+      <MapSection showHeading={true} />
+
+      {/* Frequently Asked Questions */}
+      <FAQSection />
 
       <CTASection
         heading="WANT A PERSONAL TOUR OF THE GYM?"

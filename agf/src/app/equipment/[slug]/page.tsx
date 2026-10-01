@@ -45,10 +45,15 @@ export default async function EquipmentDetailPage({ params }: Props) {
     notFound();
   }
 
-  // Find related machines in same category
-  const related = EQUIPMENT
-    .filter((m) => m.category === machine.category && m.slug !== machine.slug)
-    .slice(0, 3);
+  // Find related machines from defined relatedEquipment slugs, fallback to same category
+  const related = (machine.relatedEquipment && machine.relatedEquipment.length > 0)
+    ? machine.relatedEquipment
+        .map((relSlug) => EQUIPMENT.find((e) => e.slug === relSlug))
+        .filter((e): e is (typeof EQUIPMENT)[0] => Boolean(e))
+        .slice(0, 4)
+    : EQUIPMENT
+        .filter((m) => m.category === machine.category && m.slug !== machine.slug)
+        .slice(0, 4);
 
   return (
     <article className={styles.article}>
@@ -181,7 +186,7 @@ export default async function EquipmentDetailPage({ params }: Props) {
         {/* Related Machines in same category */}
         {related.length > 0 && (
           <section className={styles.relatedSection}>
-            <h2 className={styles.sectionHeading}>More {machine.category} Stations</h2>
+            <h2 className={styles.sectionHeading}>Related {machine.category} Stations</h2>
             <div className={styles.relatedGrid}>
               {related.map((rel) => (
                 <Link key={rel.id} href={`/equipment/${rel.slug}`} className={styles.relatedCard}>

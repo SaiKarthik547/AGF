@@ -76,17 +76,29 @@ export default function LocationSection() {
             </div>
           </motion.div>
 
-          {/* Visual Map/Gym Card */}
+          {/* Interactive Google Map Card */}
           <motion.div className={styles.mapCard} variants={itemVariant}>
-            <div className={styles.mapGraphic}>
-              <div className={styles.pinMarker}>
-                <MapPin size={28} className={styles.pinIcon} />
-                <span className={styles.pinPulse} />
-              </div>
-              <div className={styles.mapText}>
+            <div className={styles.mapContainer}>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3790.6934!2d83.6616645!3d18.4526244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3c77002c797813%3A0x9034dd07f820dd09!2sANYTIME%20GOLDEN%20FITNESS!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                title="Anytime Golden Fitness Beside Apsara Theatre Rajam Map"
+                className={styles.mapIframe}
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <div className={styles.mapOverlay}>
+                <div className={styles.mapBadge}>BESIDE APSARA THEATRE</div>
                 <h3 className={styles.mapTitle}>ANYTIME GOLDEN FITNESS</h3>
-                <p className={styles.mapAddress}>Rajam, Andhra Pradesh, India</p>
-                <div className={styles.mapBadge}>COMMERCIAL FITNESS CENTER</div>
+                <p className={styles.mapAddress}>Beside Apsara Theatre, Palakonda Road, Rajam, AP — 532127</p>
+                <a
+                  href="https://maps.app.goo.gl/xvAwfrAEFHrf1ZDH6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.directionsLink}
+                >
+                  <MapPin size={14} /> Open in Google Maps →
+                </a>
               </div>
             </div>
           </motion.div>

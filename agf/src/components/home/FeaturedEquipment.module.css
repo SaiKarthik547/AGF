@@ -196,6 +196,51 @@
   text-align: center;
 }
 
+.categoryTiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-10);
+}
+
+.categoryTile {
+  background: var(--color-near-black);
+  border: 1px solid var(--color-charcoal-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-5) var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.categoryTile:hover {
+  border-color: var(--color-orange-border);
+  background-color: var(--color-charcoal);
+  transform: translateY(-2px);
+}
+
+.categoryTileTitle {
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-bold);
+  color: var(--color-white);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+.categoryTileCount {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--color-orange);
+  background: rgba(245, 96, 10, 0.1);
+  border: 1px solid var(--color-orange-border);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
 @media (max-width: 1024px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
@@ -205,6 +250,11 @@
 @media (max-width: 640px) {
   .section {
     padding: var(--space-12) var(--space-4);
+  }
+
+  .categoryTiles {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
   }
 
   .grid {

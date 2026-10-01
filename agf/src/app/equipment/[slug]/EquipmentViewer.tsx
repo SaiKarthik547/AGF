@@ -22,10 +22,9 @@ export default function EquipmentViewer({ machine }: Props) {
     ? machine.images.find((img) => img.view === activeView) || machine.images[0]
     : null;
 
-  // Filter hotspots for current view (or all hotspots if blueprint fallback)
-  const currentHotspots = hasImages
-    ? machine.hotspots.filter((h) => h.imageView === activeView)
-    : machine.hotspots;
+  // Filter hotspots for current view (with graceful fallback to all hotspots)
+  const matchedHotspots = machine.hotspots.filter((h) => h.imageView === activeView);
+  const currentHotspots = matchedHotspots.length > 0 ? matchedHotspots : machine.hotspots;
 
   return (
     <div className={styles.viewerCard}>

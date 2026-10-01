@@ -34,7 +34,7 @@ export default function EquipmentDirectoryPage() {
         line1="COMMERCIAL-GRADE."
         line2="BIOMECHANICALLY ENGINEERED."
         accentWord="ENGINEERED."
-        description="Explore our 12 dedicated machine stations. Designed for optimal resistance curves, safe joint articulation, and targeted muscle activation."
+        description="Explore our complete equipment inventory across Cardio, Strength, and Free Weights. Biomechanically engineered for optimal resistance curves, joint safety, and progressive overload."
         cta={{ label: 'BOOK A WALKTHROUGH', href: '/book-a-visit' }}
       />
 

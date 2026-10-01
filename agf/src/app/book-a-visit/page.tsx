@@ -5,6 +5,7 @@ import PageHero from '@/components/shared/PageHero';
 import SectionLabel from '@/components/shared/SectionLabel';
 import SectionHeading from '@/components/shared/SectionHeading';
 import CTASection from '@/components/shared/CTASection';
+import FAQSection from '@/components/shared/FAQSection';
 import { Calendar, Clock, CheckCircle2, User, Phone, Mail, Target, Sparkles, MapPin } from 'lucide-react';
 import styles from './book-a-visit.module.css';
 
@@ -57,7 +58,7 @@ export default function BookAVisitPage() {
                   <div>
                     <h3 className={styles.expectTitle}>Guided Machine Walkthrough</h3>
                     <p className={styles.expectDesc}>
-                      See our 12 commercial stations up close and learn how the biomechanical adjustments fit your body.
+                      See our 25 commercial stations up close and learn how the biomechanical adjustments fit your body.
                     </p>
                   </div>
                 </div>
@@ -133,7 +134,7 @@ export default function BookAVisitPage() {
                       </div>
                       <div className={styles.summaryRow}>
                         <span>Location:</span>
-                        <strong>Rajam, Andhra Pradesh</strong>
+                        <strong>Beside Apsara Theatre, Rajam</strong>
                       </div>
                     </div>
                     <p className={styles.successNote}>
@@ -278,9 +279,12 @@ export default function BookAVisitPage() {
         </div>
       </section>
 
+      {/* Frequently Asked Questions */}
+      <FAQSection />
+
       <CTASection
         heading="EXPLORE OUR COMPLETE MACHINE LINEUP"
-        subtext="Browse all 12 commercial stations before arriving for your walkthrough."
+        subtext="Browse all 25 commercial stations across Cardio, Strength, and Free Weights before arriving for your walkthrough."
         buttonLabel="VIEW EQUIPMENT DIRECTORY"
         buttonHref="/equipment"
       />

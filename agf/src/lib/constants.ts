@@ -6,7 +6,8 @@
 export const SITE_NAME = 'Anytime Golden Fitness';
 export const SITE_SHORT_NAME = 'AGF';
 export const SITE_URL = 'https://anytimegoldenfitness.in'; // placeholder until domain is live
-export const SITE_LOCATION = 'Rajam, Andhra Pradesh, India';
+export const SITE_LOCATION = 'Beside Apsara Theatre, Palakonda Road, Rajam, Andhra Pradesh, India';
+export const GOOGLE_MAPS_URL = 'https://maps.app.goo.gl/xvAwfrAEFHrf1ZDH6';
 
 export const SITE_DESCRIPTION =
   'Anytime Golden Fitness (AGF) is a modern, fully-equipped gym in Rajam, Andhra Pradesh. Train smarter with premium equipment, expert guidance, and a supportive community.';
@@ -17,15 +18,10 @@ export const NAVBAR_HEIGHT = 72;
 /** Scroll threshold (px) at which navbar transitions from transparent → solid */
 export const NAVBAR_SCROLL_THRESHOLD = 80;
 
-/** Equipment categories in display order */
 export const EQUIPMENT_CATEGORIES = [
-  'Chest',
-  'Back',
-  'Legs',
-  'Shoulders',
-  'Arms',
   'Cardio',
-  'Functional',
+  'Strength',
+  'Free Weight',
 ] as const;
 
 /** Gallery categories in display order */
@@ -49,7 +45,7 @@ export const CONTACT_PLACEHOLDERS = {
   phone:   '[Phone — to be confirmed]',
   email:   '[Email — to be confirmed]',
   hours:   '[Opening hours — to be confirmed]',
-  address: 'Rajam, Andhra Pradesh, India',
+  address: 'Beside Apsara Theatre, Palakonda Road, Rajam, Andhra Pradesh — 532127',
 } as const;
 
 /** Homepage highlight tiles (non-numerical — no unverified stats) */

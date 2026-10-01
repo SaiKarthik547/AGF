@@ -15,12 +15,19 @@ export default function FeaturedEquipment() {
   const containerVariant = prefersReduced ? instantVariant : staggerContainer;
   const itemVariant = prefersReduced ? instantVariant : fadeUp;
 
-  // Pick 4 standout machines across different categories
+  // Category breakdown reflecting owner inventory
+  const categorySummary = [
+    { name: 'CARDIO', count: EQUIPMENT.filter(e => e.category === 'Cardio').length, href: '/equipment' },
+    { name: 'STRENGTH', count: EQUIPMENT.filter(e => e.category === 'Strength').length, href: '/equipment' },
+    { name: 'FREE WEIGHT', count: EQUIPMENT.filter(e => e.category === 'Free Weight').length, href: '/equipment' },
+  ];
+
+  // Pick 4 standout machines across owner categories
   const featured = [
-    EQUIPMENT.find(e => e.slug === 'chest-press') || EQUIPMENT[0],
-    EQUIPMENT.find(e => e.slug === 'pec-deck-fly') || EQUIPMENT[1],
-    EQUIPMENT.find(e => e.slug === 'lat-pulldown') || EQUIPMENT[2],
-    EQUIPMENT.find(e => e.slug === 'leg-press') || EQUIPMENT[3],
+    EQUIPMENT.find(e => e.slug === 'vertical-chest-press') || EQUIPMENT[6],
+    EQUIPMENT.find(e => e.slug === 'pec-fly') || EQUIPMENT[7],
+    EQUIPMENT.find(e => e.slug === 'lat-pulldown') || EQUIPMENT[13],
+    EQUIPMENT.find(e => e.slug === '45-degree-leg-press') || EQUIPMENT[5],
   ];
 
   return (
@@ -28,18 +35,28 @@ export default function FeaturedEquipment() {
       <div className={styles.container}>
         <div className={styles.header}>
           <div>
-            <SectionLabel>COMMERCIAL EQUIPMENT</SectionLabel>
-            <SectionHeading accentWord="MACHINES">
-              PRECISION-ENGINEERED MACHINES
+            <SectionLabel>OUR EQUIPMENT</SectionLabel>
+            <SectionHeading accentWord="INVENTORY">
+              COMMERCIAL-GRADE INVENTORY
             </SectionHeading>
             <p className={styles.headerSub}>
               Designed for optimal biomechanics, maximum muscle tension, and joint safety.
-              Explore our full line of commercial stations.
+              Explore our owner-verified selection across Cardio, Strength, and Free Weights.
             </p>
           </div>
           <Link href="/equipment" className={styles.viewAllDesktop}>
-            View All 12 Stations <ArrowRight size={18} />
+            View Full Equipment Inventory <ArrowRight size={18} />
           </Link>
+        </div>
+
+        {/* Category Breakdown Tiles */}
+        <div className={styles.categoryTiles}>
+          {categorySummary.map((cat) => (
+            <Link key={cat.name} href={cat.href} className={styles.categoryTile}>
+              <span className={styles.categoryTileTitle}>{cat.name}</span>
+              <span className={styles.categoryTileCount}>{cat.count} equipment</span>
+            </Link>
+          ))}
         </div>
 
         <motion.div
@@ -99,7 +116,7 @@ export default function FeaturedEquipment() {
 
         <div className={styles.viewAllMobile}>
           <PrimaryButton href="/equipment" size="default">
-            VIEW ALL 12 MACHINES <ArrowRight size={18} />
+            EXPLORE ALL EQUIPMENT <ArrowRight size={18} />
           </PrimaryButton>
         </div>
       </div>

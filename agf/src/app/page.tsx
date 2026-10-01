@@ -4,6 +4,7 @@ import FeaturedEquipment from '@/components/home/FeaturedEquipment';
 import WhyAGF from '@/components/home/WhyAGF';
 import TrainingPreview from '@/components/home/TrainingPreview';
 import LocationSection from '@/components/home/LocationSection';
+import FAQSection from '@/components/shared/FAQSection';
 import CTASection from '@/components/shared/CTASection';
 
 export default function HomePage() {
@@ -27,7 +28,10 @@ export default function HomePage() {
       {/* 6. Gym Location in Rajam */}
       <LocationSection />
 
-      {/* 7. Bottom Call to Action */}
+      {/* 7. Frequently Asked Questions */}
+      <FAQSection />
+
+      {/* 8. Bottom Call to Action */}
       <CTASection
         heading="READY TO TRANSFORM YOUR STRENGTH?"
         subtext="Experience Anytime Golden Fitness in Rajam. Explore our commercial machines and speak with our training staff."

@@ -5,7 +5,7 @@ import { fadeUp, staggerContainer, instantVariant } from '@/lib/animations';
 import styles from './QuickStats.module.css';
 
 const STATS = [
-  { value: '12+', label: 'STATIONS', sub: 'Targeted machine zones' },
+  { value: '25', label: 'COMMERCIAL STATIONS', sub: 'Cardio, strength & free weights' },
   { value: '100%', label: 'COMMERCIAL', sub: 'Biomechanical precision' },
   { value: 'RAJAM', label: 'ANDHRA PRADESH', sub: 'Prime central facility' },
   { value: 'ELITE', label: 'ENVIRONMENT', sub: 'Built for real results' },

@@ -11,13 +11,9 @@
    ------------------------------------------------------------ */
 
 export type EquipmentCategory =
-  | 'Chest'
-  | 'Back'
-  | 'Legs'
-  | 'Shoulders'
-  | 'Arms'
   | 'Cardio'
-  | 'Functional';
+  | 'Strength'
+  | 'Free Weight';
 
 /** The view identifier used to key images and hotspots */
 export type EquipmentView = 'front' | 'side' | 'rear' | 'detail' | 'in-use';

@@ -81,9 +81,9 @@ export default function AboutPage() {
 
             <div className={styles.statBox}>
               <div className={styles.statTile}>
-                <span className={styles.statNum}>12+</span>
-                <span className={styles.statLabel}>Dedicated Machine Stations</span>
-                <p className={styles.statDetail}>Covering all major upper and lower body muscle groups.</p>
+                <span className={styles.statNum}>25</span>
+                <span className={styles.statLabel}>Commercial Stations</span>
+                <p className={styles.statDetail}>Cardio, selectorized strength, and free weight zones.</p>
               </div>
               <div className={styles.statTile}>
                 <span className={styles.statNum}>100%</span>

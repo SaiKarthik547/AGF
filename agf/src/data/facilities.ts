@@ -78,7 +78,7 @@ export const FACILITIES: Facility[] = [
       'Separate male and female changing areas',
       'Lockers for securing personal belongings',
       'Clean and well-maintained environment',
-      '[Additional facilities — to be confirmed]',
+      'Hydration station & sanitization dispensers',
     ],
     image: '/images/facilities/changing-facilities.webp',
     imageAlt: 'AGF changing facilities',
