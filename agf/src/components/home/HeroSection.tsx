@@ -2,16 +2,18 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useReducedMotion } from 'motion/react';
+import { motion } from 'motion/react';
 import { ChevronRight, ArrowRight, ShieldCheck, MapPin } from 'lucide-react';
-import { fadeUp, staggerContainer, instantVariant } from '@/lib/animations';
+import { fadeUp, staggerContainer } from '@/lib/animations';
 import { PrimaryButton, SecondaryButton } from '@/components/shared/Buttons';
 import styles from './HeroSection.module.css';
 
 export default function HeroSection() {
-  const prefersReduced = useReducedMotion();
-  const containerVariant = prefersReduced ? instantVariant : staggerContainer;
-  const itemVariant = prefersReduced ? instantVariant : fadeUp;
+  // Reduced motion is handled globally by <MotionConfig reducedMotion="user">
+  // in layout.tsx — no per-component branching (that caused hydration
+  // mismatches: server rendered one variant, reduced-motion client another).
+  const containerVariant = staggerContainer;
+  const itemVariant = fadeUp;
 
   return (
     <section className={styles.hero} aria-labelledby="hero-title">

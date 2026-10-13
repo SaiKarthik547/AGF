@@ -5,7 +5,7 @@
  * e.g. "OUR EQUIPMENT", "ABOUT AGF"
  */
 
-import { motion, useReducedMotion } from 'motion/react';
+import { motion } from 'motion/react';
 import { fadeUp, instantVariant } from '@/lib/animations';
 import { cn } from '@/lib/utils';
 import styles from './SectionLabel.module.css';
@@ -21,16 +21,15 @@ export default function SectionLabel({
   className,
   animate = true,
 }: SectionLabelProps) {
-  const prefersReduced = useReducedMotion();
-  const variant = prefersReduced || !animate ? instantVariant : fadeUp;
+  // Deterministic prop branch only (reduced motion is global via MotionConfig).
+  const variant = animate ? fadeUp : instantVariant;
 
   return (
     <motion.p
       className={cn(styles.label, className)}
       variants={variant}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }}
+      animate="visible"
     >
       {children}
     </motion.p>

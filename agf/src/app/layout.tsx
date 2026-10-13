@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { MotionConfig } from 'motion/react';
 import { oswald, inter } from './fonts';
 import './globals.css';
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '@/lib/constants';
@@ -46,11 +47,20 @@ export default function RootLayout({
       className={`${oswald.variable} ${inter.variable}`}
     >
       <body>
-        <Navbar />
-        <main id="main-content">
-          {children}
-        </main>
-        <Footer />
+        {/*
+          MotionConfig reducedMotion="user" lets motion itself honour the
+          OS-level prefers-reduced-motion setting. This replaces per-component
+          useReducedMotion() branching, which rendered a DIFFERENT variant on
+          the server (opacity 0) vs the client (opacity 1) for reduced-motion
+          users and caused a hydration mismatch on every page.
+        */}
+        <MotionConfig reducedMotion="user">
+          <Navbar />
+          <main id="main-content">
+            {children}
+          </main>
+          <Footer />
+        </MotionConfig>
       </body>
     </html>
   );

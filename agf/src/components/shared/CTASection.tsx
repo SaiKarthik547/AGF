@@ -6,8 +6,8 @@
  */
 
 import Image from 'next/image';
-import { motion, useReducedMotion } from 'motion/react';
-import { fadeUp, staggerContainer, instantVariant } from '@/lib/animations';
+import { motion } from 'motion/react';
+import { fadeUp, staggerContainer } from '@/lib/animations';
 import { PrimaryButton } from './Buttons';
 import styles from './CTASection.module.css';
 
@@ -29,9 +29,9 @@ export default function CTASection({
   backgroundImage,
   secondButton,
 }: CTASectionProps) {
-  const prefersReduced = useReducedMotion();
-  const containerVariant = prefersReduced ? instantVariant : staggerContainer;
-  const itemVariant      = prefersReduced ? instantVariant : fadeUp;
+  // Global <MotionConfig reducedMotion="user"> handles reduced motion.
+  const containerVariant = staggerContainer;
+  const itemVariant      = fadeUp;
 
   return (
     <section className={styles.section} aria-labelledby="cta-heading">
@@ -43,11 +43,9 @@ export default function CTASection({
       <div className={styles.overlay} aria-hidden="true" />
 
       <motion.div
-        className={styles.content}
-        variants={containerVariant}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-80px' }}
+        className={styles.content}      variants={containerVariant}
+      initial="hidden"
+      animate="visible"
       >
         <motion.h2
           id="cta-heading"

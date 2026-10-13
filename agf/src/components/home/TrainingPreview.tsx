@@ -1,18 +1,18 @@
 'use client';
 
 import Link from 'next/link';
-import { motion, useReducedMotion } from 'motion/react';
+import { motion } from 'motion/react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
-import { fadeUp, staggerContainer, instantVariant } from '@/lib/animations';
+import { fadeUp, staggerContainer } from '@/lib/animations';
 import { TRAINING_PROGRAMS } from '@/data/training';
 import SectionLabel from '@/components/shared/SectionLabel';
 import SectionHeading from '@/components/shared/SectionHeading';
 import styles from './TrainingPreview.module.css';
 
 export default function TrainingPreview() {
-  const prefersReduced = useReducedMotion();
-  const containerVariant = prefersReduced ? instantVariant : staggerContainer;
-  const itemVariant = prefersReduced ? instantVariant : fadeUp;
+  // Global <MotionConfig reducedMotion="user"> handles reduced motion.
+  const containerVariant = staggerContainer;
+  const itemVariant = fadeUp;
 
   // Show top 3 training programs
   const programs = TRAINING_PROGRAMS.slice(0, 3);
@@ -36,8 +36,7 @@ export default function TrainingPreview() {
           className={styles.grid}
           variants={containerVariant}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
+          animate="visible"
         >
           {programs.map((prog) => (
             <motion.div key={prog.id} className={styles.card} variants={itemVariant}>

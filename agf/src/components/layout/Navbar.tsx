@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, Calendar } from 'lucide-react';
 import { NAV_LINKS } from '@/data/nav';
 import { NAVBAR_SCROLL_THRESHOLD } from '@/lib/constants';
@@ -14,7 +14,6 @@ import {
   mobileNavContainer,
   mobileNavLinks,
   mobileNavLink,
-  instantVariant,
 } from '@/lib/animations';
 import styles from './Navbar.module.css';
 
@@ -22,7 +21,6 @@ export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const prefersReduced = useReducedMotion();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   /* -- Scroll handler ---------------------------------------- */
@@ -40,7 +38,13 @@ export default function Navbar() {
   }, [menuOpen]);
 
   /* -- Close menu on route change --------------------------- */
-  useEffect(() => { setMenuOpen(false); }, [pathname]);
+  // Adjust state during render (React's documented pattern) instead of a
+  // useEffect that calls setState — avoids cascading renders.
+  const [lastPathname, setLastPathname] = useState(pathname);
+  if (lastPathname !== pathname) {
+    setLastPathname(pathname);
+    if (menuOpen) setMenuOpen(false);
+  }
 
   /* -- Keyboard: Escape closes menu ------------------------- */
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
@@ -55,10 +59,11 @@ export default function Navbar() {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [handleKeyDown]);
 
-  const overlayVariant  = prefersReduced ? instantVariant : mobileNavOverlay;
-  const containerVariant = prefersReduced ? instantVariant : mobileNavContainer;
-  const linksVariant    = prefersReduced ? instantVariant : mobileNavLinks;
-  const linkVariant     = prefersReduced ? instantVariant : mobileNavLink;
+  // Global <MotionConfig reducedMotion="user"> handles reduced motion.
+  const overlayVariant  = mobileNavOverlay;
+  const containerVariant = mobileNavContainer;
+  const linksVariant    = mobileNavLinks;
+  const linkVariant     = mobileNavLink;
 
   return (
     <>

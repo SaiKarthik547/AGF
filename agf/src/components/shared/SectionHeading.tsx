@@ -5,7 +5,7 @@
  * Supports an optional accentWord rendered in orange.
  */
 
-import { motion, useReducedMotion } from 'motion/react';
+import { motion } from 'motion/react';
 import { fadeUp, instantVariant } from '@/lib/animations';
 import { cn } from '@/lib/utils';
 import styles from './SectionHeading.module.css';
@@ -27,8 +27,9 @@ export default function SectionHeading({
   className,
   animate = true,
 }: SectionHeadingProps) {
-  const prefersReduced = useReducedMotion();
-  const variant = prefersReduced || !animate ? instantVariant : fadeUp;
+  // Deterministic prop branch only (reduced motion is global via MotionConfig)
+  // — must not depend on hooks, or server and client could render differently.
+  const variant = animate ? fadeUp : instantVariant;
 
   const text = typeof children === 'string' ? children : null;
 
@@ -50,8 +51,7 @@ export default function SectionHeading({
     <motion.div
       variants={variant}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }}
+      animate="visible"
       className={cn(styles.wrapper, className)}
     >
       <Tag className={cn(styles.heading, size === 'lg' && styles.headingLg)}>

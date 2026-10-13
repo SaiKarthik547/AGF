@@ -8,23 +8,108 @@ import CTASection from '@/components/shared/CTASection';
 import MapSection from '@/components/shared/MapSection';
 import FAQSection from '@/components/shared/FAQSection';
 import { SITE_LOCATION, CONTACT_PLACEHOLDERS } from '@/lib/constants';
+import { isValidIndianPhone } from '@/lib/booking/schema';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, MessageSquare } from 'lucide-react';
 import styles from './contact.module.css';
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<Record<string, string>>({
     name: '',
     phone: '',
     email: '',
     topic: 'General Inquiry',
     message: '',
+    website_url: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!formData.name || !formData.phone) return;
-    setSubmitted(true);
+    setError(null);
+    setFieldErrors({});
+
+    // Mandatory: name, phone, topic. Optional: email, message.
+    // If anything required is missing we show the field error and do NOT
+    // call the API, so Google Sheets never sees an incomplete request.
+    const errs: Record<string, string> = {};
+    if (!formData.name.trim()) errs.name = 'Please enter your full name.';
+    if (!formData.phone.trim()) {
+      errs.phone = 'Please enter your phone number.';
+    } else if (!isValidIndianPhone(formData.phone)) {
+      errs.phone = 'Enter a valid 10-digit phone number (e.g. 98765 43210).';
+    }
+    if (!formData.topic) errs.topic = 'Please select an inquiry topic.';
+    if (Object.keys(errs).length > 0) {
+      setFieldErrors(errs);
+      setError('Please fill in all required fields marked with *.');
+      return;
+    }
+
+    setSubmitting(true);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email || '',
+          topic: formData.topic,
+          message: formData.message,
+          website_url: formData.website_url || '',
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.ok) {
+        setSubmitted(true);
+        setSubmitting(false);
+        setFormData({
+          name: '',
+          phone: '',
+          email: '',
+          topic: 'General Inquiry',
+          message: '',
+          website_url: '',
+        });
+      } else if (data.error === 'validation') {
+        setFieldErrors(data.fields || {});
+        setError(data.message || 'Please check the form and try again.');
+      } else if (data.error === 'rate_limited' || data.error === 'quota_exceeded' || data.error === 'cooldown') {
+        // Server busy (rate limit), device cooldown, or today's message limit
+        // reached (quota) — the server message already explains what to do.
+        setError(data.message || 'We are receiving high traffic right now. Please try again a little later.');
+        setSubmitting(false);
+      } else {
+        setError(data.message || 'We could not process your request. Please try again in a few minutes.');
+        setSubmitting(false);
+      }
+    } catch {
+      setError('A network error occurred. Please check your connection and try again.');
+      setSubmitting(false);
+    }
+  };
+
+  const handleReset = () => {
+    setSubmitted(false);
+    setError(null);
+    setFieldErrors({});
+    setSubmitting(false);
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      topic: 'General Inquiry',
+      message: '',
+      website_url: '',
+    });
   };
 
   return (
@@ -40,7 +125,6 @@ export default function ContactPage() {
       <section className={styles.section} aria-label="Contact Anytime Golden Fitness">
         <div className={styles.container}>
           <div className={styles.grid}>
-            {/* Contact Information & Location Cards */}
             <div className={styles.infoCol}>
               <SectionLabel>DIRECT CONTACT</SectionLabel>
               <SectionHeading accentWord="INFORMATION">
@@ -97,7 +181,6 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Interactive Message Form */}
             <div className={styles.formCol}>
               <div className={styles.formCard}>
                 <div className={styles.formHeader}>
@@ -110,20 +193,51 @@ export default function ContactPage() {
                     <CheckCircle2 size={48} className={styles.successIcon} />
                     <h3 className={styles.successTitle}>MESSAGE RECEIVED</h3>
                     <p className={styles.successDesc}>
-                      Thank you, <strong>{formData.name}</strong>. We have received your inquiry regarding &quot;{formData.topic}&quot;. Our team will be in touch with you shortly at <strong>{formData.phone}</strong>.
+                      Thank you. Your inquiry has been submitted and our team will be in touch with you shortly.
                     </p>
                     <button
-                      onClick={() => {
-                        setSubmitted(false);
-                        setFormData({ name: '', phone: '', email: '', topic: 'General Inquiry', message: '' });
-                      }}
+                      onClick={handleReset}
                       className={styles.resetBtn}
                     >
                       Send Another Message
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className={styles.form}>
+                  <form onSubmit={handleSubmit} className={styles.form} noValidate>
+                    <div
+                      style={{
+                        position: 'absolute',
+                        left: '-9999px',
+                        top: '-9999px',
+                        opacity: 0,
+                        height: 0,
+                        width: 0,
+                        overflow: 'hidden',
+                      }}
+                      aria-hidden="true"
+                    >
+                      <label htmlFor="website-url-contact">Website</label>
+                      <input
+                        type="text"
+                        id="website-url-contact"
+                        name="website_url"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={formData.website_url}
+                        onChange={(e) =>
+                          setFormData({ ...formData, website_url: e.target.value })
+                        }
+                        placeholder="https://"
+                      />
+                    </div>
+
+                    {error && (
+                      <div className={styles.errorMessage} role="alert">
+                        <span className={styles.errorIcon}>!</span>
+                        {error}
+                      </div>
+                    )}
+
                     <div className={styles.formGroup}>
                       <label htmlFor="name" className={styles.label}>
                         Full Name <span className={styles.required}>*</span>
@@ -134,9 +248,18 @@ export default function ContactPage() {
                         required
                         placeholder="e.g. Ramesh Kumar"
                         value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className={styles.input}
+                        onChange={(e) =>
+                          setFormData({ ...formData, name: e.target.value })
+                        }
+                        className={`${styles.input} ${fieldErrors.name ? styles.inputError : ''}`}
+                        aria-invalid={!!fieldErrors.name}
+                        aria-describedby={fieldErrors.name ? 'name-error' : undefined}
                       />
+                      {fieldErrors.name && (
+                        <span id="name-error" className={styles.fieldError}>
+                          {fieldErrors.name}
+                        </span>
+                      )}
                     </div>
 
                     <div className={styles.formRow}>
@@ -150,9 +273,18 @@ export default function ContactPage() {
                           required
                           placeholder="e.g. +91 98765 43210"
                           value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className={styles.input}
+                          onChange={(e) =>
+                            setFormData({ ...formData, phone: e.target.value })
+                          }
+                          className={`${styles.input} ${fieldErrors.phone ? styles.inputError : ''}`}
+                          aria-invalid={!!fieldErrors.phone}
+                          aria-describedby={fieldErrors.phone ? 'phone-error' : undefined}
                         />
+                        {fieldErrors.phone && (
+                          <span id="phone-error" className={styles.fieldError}>
+                            {fieldErrors.phone}
+                          </span>
+                        )}
                       </div>
 
                       <div className={styles.formGroup}>
@@ -164,20 +296,31 @@ export default function ContactPage() {
                           id="email"
                           placeholder="e.g. ramesh@example.com"
                           value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className={styles.input}
+                          onChange={(e) =>
+                            setFormData({ ...formData, email: e.target.value })
+                          }
+                          className={`${styles.input} ${fieldErrors.email ? styles.inputError : ''}`}
+                          aria-invalid={!!fieldErrors.email}
+                          aria-describedby={fieldErrors.email ? 'email-error' : undefined}
                         />
+                        {fieldErrors.email && (
+                          <span id="email-error" className={styles.fieldError}>
+                            {fieldErrors.email}
+                          </span>
+                        )}
                       </div>
                     </div>
 
                     <div className={styles.formGroup}>
                       <label htmlFor="topic" className={styles.label}>
-                        Inquiry Topic
+                        Inquiry Topic <span className={styles.required}>*</span>
                       </label>
                       <select
                         id="topic"
                         value={formData.topic}
-                        onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, topic: e.target.value })
+                        }
                         className={styles.select}
                       >
                         <option value="General Inquiry">General Facility Inquiry</option>
@@ -185,24 +328,53 @@ export default function ContactPage() {
                         <option value="Personal Training">Personal Training Programs</option>
                         <option value="Walkthrough Schedule">Facility Walkthrough</option>
                       </select>
+                      {fieldErrors.topic && (
+                        <span className={styles.fieldError}>
+                          {fieldErrors.topic}
+                        </span>
+                      )}
                     </div>
 
                     <div className={styles.formGroup}>
                       <label htmlFor="message" className={styles.label}>
-                        Message / Questions
+                        Message / Questions (Optional)
                       </label>
                       <textarea
                         id="message"
                         rows={4}
                         placeholder="Tell us what you would like to know or discuss..."
                         value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className={styles.textarea}
+                        onChange={(e) =>
+                          setFormData({ ...formData, message: e.target.value })
+                        }
+                        className={`${styles.textarea} ${fieldErrors.message ? styles.inputError : ''}`}
+                        aria-invalid={!!fieldErrors.message}
+                        aria-describedby={fieldErrors.message ? 'message-error' : undefined}
                       />
+                      {fieldErrors.message && (
+                        <span id="message-error" className={styles.fieldError}>
+                          {fieldErrors.message}
+                        </span>
+                      )}
                     </div>
 
-                    <button type="submit" className={styles.submitBtn}>
-                      <Send size={18} /> Send Inquiry
+                    <button
+                      type="submit"
+                      className={styles.submitBtn}
+                      disabled={submitting}
+                      aria-busy={submitting}
+                    >
+                      {submitting ? (
+                        <>
+                          <span className={styles.spinner} aria-hidden="true" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send size={18} aria-hidden="true" />
+                          Send Inquiry
+                        </>
+                      )}
                     </button>
                   </form>
                 )}
@@ -212,10 +384,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Interactive Google Map with precise Rajam coordinates */}
       <MapSection showHeading={true} />
 
-      {/* Frequently Asked Questions */}
       <FAQSection />
 
       <CTASection

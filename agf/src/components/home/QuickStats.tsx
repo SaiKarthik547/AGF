@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, useReducedMotion } from 'motion/react';
-import { fadeUp, staggerContainer, instantVariant } from '@/lib/animations';
+import { motion } from 'motion/react';
+import { fadeUp, staggerContainer } from '@/lib/animations';
 import styles from './QuickStats.module.css';
 
 const STATS = [
@@ -12,9 +12,9 @@ const STATS = [
 ];
 
 export default function QuickStats() {
-  const prefersReduced = useReducedMotion();
-  const containerVariant = prefersReduced ? instantVariant : staggerContainer;
-  const itemVariant = prefersReduced ? instantVariant : fadeUp;
+  // Global <MotionConfig reducedMotion="user"> handles reduced motion.
+  const containerVariant = staggerContainer;
+  const itemVariant = fadeUp;
 
   return (
     <section className={styles.section} aria-label="Gym Highlights">
@@ -23,8 +23,7 @@ export default function QuickStats() {
           className={styles.grid}
           variants={containerVariant}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
+          animate="visible"
         >
           {STATS.map((stat, i) => (
             <motion.div key={i} className={styles.statCard} variants={itemVariant}>

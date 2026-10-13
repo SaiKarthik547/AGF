@@ -1,9 +1,9 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useReducedMotion } from 'motion/react';
+import { motion } from 'motion/react';
 import { ArrowRight, ChevronRight, Activity, Dumbbell } from 'lucide-react';
-import { fadeUp, staggerContainer, instantVariant } from '@/lib/animations';
+import { fadeUp, staggerContainer } from '@/lib/animations';
 import { EQUIPMENT } from '@/data/equipment';
 import SectionLabel from '@/components/shared/SectionLabel';
 import SectionHeading from '@/components/shared/SectionHeading';
@@ -11,9 +11,9 @@ import { PrimaryButton } from '@/components/shared/Buttons';
 import styles from './FeaturedEquipment.module.css';
 
 export default function FeaturedEquipment() {
-  const prefersReduced = useReducedMotion();
-  const containerVariant = prefersReduced ? instantVariant : staggerContainer;
-  const itemVariant = prefersReduced ? instantVariant : fadeUp;
+  // Global <MotionConfig reducedMotion="user"> handles reduced motion.
+  const containerVariant = staggerContainer;
+  const itemVariant = fadeUp;
 
   // Category breakdown reflecting owner inventory
   const categorySummary = [
@@ -63,8 +63,7 @@ export default function FeaturedEquipment() {
           className={styles.grid}
           variants={containerVariant}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
+          animate="visible"
         >
           {featured.map((item) => {
             const displayImg = item.images.find(img => img.view === 'side') || item.images[0];

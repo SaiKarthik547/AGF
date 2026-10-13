@@ -1,8 +1,8 @@
 'use client';
 
-import { motion, useReducedMotion } from 'motion/react';
+import { motion } from 'motion/react';
 import { MapPin, Clock, Phone, Mail } from 'lucide-react';
-import { fadeUp, staggerContainer, instantVariant } from '@/lib/animations';
+import { fadeUp, staggerContainer } from '@/lib/animations';
 import { SITE_LOCATION, CONTACT_PLACEHOLDERS } from '@/lib/constants';
 import SectionLabel from '@/components/shared/SectionLabel';
 import SectionHeading from '@/components/shared/SectionHeading';
@@ -10,9 +10,9 @@ import { PrimaryButton } from '@/components/shared/Buttons';
 import styles from './LocationSection.module.css';
 
 export default function LocationSection() {
-  const prefersReduced = useReducedMotion();
-  const containerVariant = prefersReduced ? instantVariant : staggerContainer;
-  const itemVariant = prefersReduced ? instantVariant : fadeUp;
+  // Global <MotionConfig reducedMotion="user"> handles reduced motion.
+  const containerVariant = staggerContainer;
+  const itemVariant = fadeUp;
 
   return (
     <section className={styles.section} aria-labelledby="location-heading">
@@ -21,8 +21,7 @@ export default function LocationSection() {
           className={styles.grid}
           variants={containerVariant}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
+          animate="visible"
         >
           {/* Info column */}
           <motion.div className={styles.infoCol} variants={itemVariant}>

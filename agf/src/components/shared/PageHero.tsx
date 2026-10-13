@@ -9,8 +9,8 @@
  */
 
 import Image from 'next/image';
-import { motion, useReducedMotion } from 'motion/react';
-import { fadeUp, heroContainer, heroWord, instantVariant } from '@/lib/animations';
+import { motion } from 'motion/react';
+import { fadeUp, heroContainer, heroWord } from '@/lib/animations';
 import { PrimaryButton, SecondaryButton } from './Buttons';
 import SectionLabel from './SectionLabel';
 import styles from './PageHero.module.css';
@@ -48,11 +48,10 @@ export default function PageHero({
   secondaryCta,
   minHeight = '60vh',
 }: PageHeroProps) {
-  const prefersReduced = useReducedMotion();
-
-  const containerVariant = prefersReduced ? instantVariant : heroContainer;
-  const wordVariant      = prefersReduced ? instantVariant : heroWord;
-  const bodyVariant      = prefersReduced ? instantVariant : fadeUp;
+  // Global <MotionConfig reducedMotion="user"> handles reduced motion.
+  const containerVariant = heroContainer;
+  const wordVariant      = heroWord;
+  const bodyVariant      = fadeUp;
 
   const renderLine2 = () => {
     if (!accentWord || !line2.includes(accentWord)) return line2;
@@ -89,7 +88,7 @@ export default function PageHero({
 
       {/* Content */}
       <div className={styles.content}>
-        <SectionLabel animate={!prefersReduced}>{label}</SectionLabel>
+        <SectionLabel>{label}</SectionLabel>
 
         <motion.div
           variants={containerVariant}

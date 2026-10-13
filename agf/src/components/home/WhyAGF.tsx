@@ -1,8 +1,8 @@
 'use client';
 
-import { motion, useReducedMotion } from 'motion/react';
+import { motion } from 'motion/react';
 import { Target, Zap, Shield, Users } from 'lucide-react';
-import { fadeUp, staggerContainer, instantVariant } from '@/lib/animations';
+import { fadeUp, staggerContainer } from '@/lib/animations';
 import SectionLabel from '@/components/shared/SectionLabel';
 import SectionHeading from '@/components/shared/SectionHeading';
 import styles from './WhyAGF.module.css';
@@ -31,9 +31,9 @@ const PILLARS = [
 ];
 
 export default function WhyAGF() {
-  const prefersReduced = useReducedMotion();
-  const containerVariant = prefersReduced ? instantVariant : staggerContainer;
-  const itemVariant = prefersReduced ? instantVariant : fadeUp;
+  // Global <MotionConfig reducedMotion="user"> handles reduced motion.
+  const containerVariant = staggerContainer;
+  const itemVariant = fadeUp;
 
   return (
     <section className={styles.section} aria-labelledby="why-heading">
@@ -52,8 +52,7 @@ export default function WhyAGF() {
           className={styles.grid}
           variants={containerVariant}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
+          animate="visible"
         >
           {PILLARS.map((pillar, i) => {
             const Icon = pillar.icon;
