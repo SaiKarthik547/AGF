@@ -66,7 +66,7 @@ async function main() {
     spreadsheetId: sid,
     range: 'Booking Requests!A:K',
     valueInputOption: 'RAW',
-    insertDataOption: 'INSERT_ROWS',
+    insertDataOption: 'OVERWRITE',
     requestBody: { values: [bookingRow] },
   });
   console.log('Booking write latency: ' + (Date.now() - t1) + 'ms');
@@ -87,7 +87,7 @@ async function main() {
     spreadsheetId: sid,
     range: 'Contact Inquiries!A:I',
     valueInputOption: 'RAW',
-    insertDataOption: 'INSERT_ROWS',
+    insertDataOption: 'OVERWRITE',
     requestBody: { values: [contactRow] },
   });
   console.log('Contact write latency: ' + (Date.now() - t2) + 'ms');
