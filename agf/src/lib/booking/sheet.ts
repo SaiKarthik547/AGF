@@ -133,7 +133,7 @@ async function appendRow(
       // or "+" characters as formulas, which corrupts phone numbers like
       // "+91 98765 43210" into #ERROR! and would execute injected formulas.
       valueInputOption: 'RAW',
-      insertDataOption: 'INSERT_ROWS',
+      insertDataOption: 'OVERWRITE',
       requestBody: {
         values,
       },
